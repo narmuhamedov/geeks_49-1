@@ -1,0 +1,19 @@
+{% load static %}
+{% include 'components/header.html' %}
+<link rel="stylesheet" href="{% static 'css/hastags.css' %}">
+<div class="container">
+    <div class="buttons">
+        <button class="btn"><a href="{% url 'bathroom_products' %}">Для Ванной</a></button>
+        <button class="btn"><a href="{% url 'kitchen_products' %}">Для Кухни</a></button>
+        <button class="btn"><a href="">Для Гостинной</a></button>
+    </div>
+
+   {% for i in all_products %}
+    <div class="content">
+        <p class="white">{{ i.title }}</p>
+      <hr class="white">
+        <p class="white">{{ i.price }}</p>
+    </div>
+  {% endfor %}
+</div>
+{% include 'components/footer.html' %}

@@ -15,6 +15,7 @@ class FilmModel(models.Model):
                              verbose_name='выберите жанр')
     time = models.TimeField(verbose_name='укажите время просмотра')
     director = models.CharField(max_length=100, default='Иванов Иван')
+    music = models.FileField(upload_to='music/', verbose_name='Загрузите музыку', null=True, blank=True)
     trailer = models.URLField(verbose_name='укажите ссылку из YOUTUBE')
     #video = models.FileField(upload_to='videos/',)
     def __str__(self):
@@ -26,6 +27,18 @@ class FilmModel(models.Model):
 
 
 
-
-
-
+class Review(models.Model):
+    STARS = (
+        ("🌟", "🌟"),
+        ("🌟🌟", "🌟🌟"),
+        ("🌟🌟🌟", "🌟🌟🌟"),
+        ("🌟🌟🌟🌟", "🌟🌟🌟🌟"),
+        ("🌟🌟🌟🌟🌟", "🌟🌟🌟🌟🌟"),
+    )
+    choice_show = models.ForeignKey(FilmModel, on_delete=models.CASCADE,
+                                    related_name='shows')
+    created_at = models.DateField(auto_now_add=True)
+    review_text = models.TextField(default='Крутой фильм')
+    stars = models.CharField(max_length=10, choices=STARS, default='🌟🌟')
+    def __str__(self):
+        return f'{self.stars}-{self.choice_show.title}'
