@@ -36,11 +36,11 @@
                         TODOLIST
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Добавить</a></li>
+                        <li><a class="dropdown-item" href="{% url 'create_todo' %}">Добавить</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Список задач</a></li>
+                        <li><a class="dropdown-item" href="{% url 'todo_lst' %}">Список задач</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

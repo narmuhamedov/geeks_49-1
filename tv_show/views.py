@@ -1,6 +1,22 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from . import models
+from . import models, forms
+
+#create reviews
+def create_review_view(request):
+    if request.method == "POST":
+        form = forms.CreateReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            review = form.save(commit=False)  # Сначала создаем объект, но не сохраняем
+            review.save()  # Теперь сохраняем в базе данных
+            film_id = review.choice_show.id  # Получаем id связанного фильма
+            return redirect('film_detail', id=film_id)  # Передаем id фильма
+    else:
+        form = forms.CreateReviewForm()
+    return render(request, template_name='create_review.html',
+                  context={'form': form})
+
+
 
 #films list
 def film_list_view(request):

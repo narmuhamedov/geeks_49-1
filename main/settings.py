@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tv_show',
     'products_home',
+    'todo',
 ]
 
 MIDDLEWARE = [
