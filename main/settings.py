@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'tv_show',
     'products_home',
     'todo',
+    'parser_app',
 ]
 
 MIDDLEWARE = [
