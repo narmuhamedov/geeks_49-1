@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('products_home.urls')),
     path('', include('todo.urls')),
     path('', include('parser_app.urls')),
+    path('', include('users.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL,
                      document_root=settings.STATIC_ROOT)
